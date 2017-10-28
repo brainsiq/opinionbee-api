@@ -1,3 +1,5 @@
+const callEndpoint = require('./lib/callEndpoint');
+
 class ApiClient {
   constructor ({ apiKey }) {
     const options = {
@@ -5,9 +7,9 @@ class ApiClient {
       apiKey
     };
 
-    this.companies = require('./lib/companies').bind(null, options);
-    this.parties = require('./lib/parties').bind(null, options);
-    this.types = require('./lib/types').bind(null, options);
+    this.companies = callEndpoint.bind(null, options, 'companies');
+    this.parties = callEndpoint.bind(null, options, 'parties');
+    this.types = callEndpoint.bind(null, options, 'types');
   }
 }
 
