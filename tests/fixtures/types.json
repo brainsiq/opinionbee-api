@@ -1,0 +1,42 @@
+{
+  "WESTVI": {
+    "id": 1,
+    "code": "WESTVI",
+    "name": "Westminster Voting Intention",
+    "country": "GBR",
+    "canonical": "westminster",
+    "menu": "Westminster",
+    "short_name": "Westminster VI",
+    "category": 1,
+    "hashtag": null,
+    "partylist": [
+      "CON",
+      "LAB",
+      "LD",
+      "GRN",
+      "UKIP"
+    ],
+    "complist": [],
+    "candidatelist": []
+  },
+  "EUUK": {
+    "id": 2,
+    "code": "EUUK",
+    "name": "European Parliament",
+    "country": "GBR",
+    "canonical": "european-parliament",
+    "menu": "European Parliament",
+    "short_name": "Euro Parl",
+    "category": 1,
+    "hashtag": "#EU19",
+    "partylist": [
+      "UKIP",
+      "CON",
+      "LAB",
+      "LD",
+      "GRN"
+    ],
+    "complist": [],
+    "candidatelist": []
+  }
+}
