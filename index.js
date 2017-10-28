@@ -6,6 +6,7 @@ class ApiClient {
     };
 
     this.companies = require('./lib/companies').bind(null, options);
+    this.parties = require('./lib/parties').bind(null, options);
   }
 }
 

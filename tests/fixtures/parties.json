@@ -1,0 +1,20 @@
+{
+  "CON": {
+    "name": "Conservative",
+    "colour": "0087DC",
+    "code": "CON",
+    "textcolor": "f3f3f3"
+  },
+  "LAB": {
+    "name": "Labour",
+    "colour": "DC241F",
+    "code": "LAB",
+    "textcolor": "f3f3f3"
+  },
+  "LD": {
+    "name": "Liberal Democrats",
+    "colour": "FDBB30",
+    "code": "LD",
+    "textcolor": "191919"
+  }
+}
