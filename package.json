@@ -25,6 +25,7 @@
   "homepage": "https://github.com/brainsiq/opinionbee-api#readme",
   "devDependencies": {
     "ava": "^0.23.0",
+    "nock": "^9.0.25",
     "semistandard": "^11.0.0"
   }
 }

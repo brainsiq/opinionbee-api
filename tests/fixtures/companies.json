@@ -1,0 +1,17 @@
+{
+  "YG": {
+    "code": "YG",
+    "name": "YouGov",
+    "canonical": "yougov"
+  },
+  "OP": {
+    "code": "OP",
+    "name": "Opinium",
+    "canonical": "opinium"
+  },
+  "IPSOS": {
+    "code": "IPSOS",
+    "name": "Ipsos MORI",
+    "canonical": "ipsos-mori"
+  }
+}
