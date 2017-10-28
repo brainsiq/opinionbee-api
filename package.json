@@ -1,0 +1,30 @@
+{
+  "name": "opinionbee-api",
+  "version": "1.0.0",
+  "description": "A client library for the opinionbee.uk API",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava tests && semistandard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brainsiq/opinionbee-api.git"
+  },
+  "author": {
+    "name": "Chris Impey",
+    "email": "chris@impey.io"
+  },
+  "keywords": [
+    "API",
+    "opinionbee"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brainsiq/opinionbee-api/issues"
+  },
+  "homepage": "https://github.com/brainsiq/opinionbee-api#readme",
+  "devDependencies": {
+    "ava": "^0.23.0",
+    "semistandard": "^11.0.0"
+  }
+}
