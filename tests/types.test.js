@@ -1,9 +1,11 @@
 const test = require('ava');
 const nock = require('nock');
+const helpers = require('./helpers');
+const typesFixture = require('./fixtures/types');
 const ApiClient = require('../');
 
-const apiKey = 'foo';
-const client = new ApiClient({ apiKey });
+const client = new ApiClient({ apiKey: helpers.apiKey });
+const stubApiCall = helpers.stubApiCall.bind(null, 'types');
 const expectedTypes = [{
   id: 1,
   code: 'WESTVI',
@@ -44,25 +46,12 @@ const expectedTypes = [{
   candidatelist: []
 }];
 
-let apiStub = null;
-
-test.beforeEach(() => {
-  apiStub = nock('http://opinionbee.uk');
-});
-
 test.afterEach(() => {
   nock.cleanAll();
 });
 
-const getApiStub = () => nock('http://opinionbee.uk').get('/json/v1.0/types');
-const stubApiCall = (status = 200, data = require('./fixtures/types.json')) => {
-  getApiStub()
-    .query({ key: apiKey })
-    .reply(status, data);
-};
-
 test('ApiClient#types returns types from the API', async t => {
-  stubApiCall();
+  const apiStub = stubApiCall(typesFixture);
 
   await client.types()
     .then(data => {
@@ -72,20 +61,19 @@ test('ApiClient#types returns types from the API', async t => {
 });
 
 test('ApiClient#types returns errors from the API', async t => {
-  const statusCode = 200;
   const response = {
     error: 'Missing or Invalid API Key',
     request_domain: 'opinionbee.uk'
   };
 
-  stubApiCall(statusCode, response);
+  stubApiCall(response);
 
   await client.types()
     .then(() => t.fail('Api client call did not fail'))
     .catch(err => {
       t.truthy(err instanceof Error, 'Is an error object');
       t.is(err.message, 'Opinionbee API call failed');
-      t.is(err.httpStatusCode, statusCode);
+      t.is(err.httpStatusCode, 200);
       t.deepEqual(err.httpResponseBody, response);
     });
 });
@@ -94,7 +82,7 @@ test('ApiClient#types returns HTTP failed response as an error ', async t => {
   const statusCode = 500;
   const response = 'Oops';
 
-  stubApiCall(statusCode, response);
+  stubApiCall(response, statusCode);
 
   await client.types()
     .then(() => t.fail('Api client call did not fail'))
@@ -109,7 +97,8 @@ test('ApiClient#types returns HTTP failed response as an error ', async t => {
 test('ApiClient#types returns errors from the HTTP call', async t => {
   const error = new Error('Oops');
 
-  getApiStub().replyWithError(error);
+  helpers.getApiStub('types')
+    .replyWithError(error);
 
   await client.types()
     .then(() => t.fail('Api client call did not fail'))

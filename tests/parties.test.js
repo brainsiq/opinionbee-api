@@ -1,9 +1,11 @@
 const test = require('ava');
 const nock = require('nock');
+const helpers = require('./helpers');
+const partiesFixture = require('./fixtures/parties');
 const ApiClient = require('../');
 
-const apiKey = 'foo';
-const client = new ApiClient({ apiKey });
+const client = new ApiClient({ apiKey: helpers.apiKey });
+const stubApiCall = helpers.stubApiCall.bind(null, 'parties');
 const expectedParties = [{
   name: 'Conservative',
   colour: '0087DC',
@@ -21,25 +23,12 @@ const expectedParties = [{
   textcolor: '191919'
 }];
 
-let apiStub = null;
-
-test.beforeEach(() => {
-  apiStub = nock('http://opinionbee.uk');
-});
-
 test.afterEach(() => {
   nock.cleanAll();
 });
 
-const getApiStub = () => nock('http://opinionbee.uk').get('/json/v1.0/parties');
-const stubApiCall = (status = 200, data = require('./fixtures/parties.json')) => {
-  getApiStub()
-    .query({ key: apiKey })
-    .reply(status, data);
-};
-
 test('ApiClient#parties returns parties from the API', async t => {
-  stubApiCall();
+  const apiStub = stubApiCall(partiesFixture);
 
   await client.parties()
     .then(data => {
@@ -49,20 +38,19 @@ test('ApiClient#parties returns parties from the API', async t => {
 });
 
 test('ApiClient#parties returns errors from the API', async t => {
-  const statusCode = 200;
   const response = {
     error: 'Missing or Invalid API Key',
     request_domain: 'opinionbee.uk'
   };
 
-  stubApiCall(statusCode, response);
+  stubApiCall(response);
 
   await client.parties()
     .then(() => t.fail('Api client call did not fail'))
     .catch(err => {
       t.truthy(err instanceof Error, 'Is an error object');
       t.is(err.message, 'Opinionbee API call failed');
-      t.is(err.httpStatusCode, statusCode);
+      t.is(err.httpStatusCode, 200);
       t.deepEqual(err.httpResponseBody, response);
     });
 });
@@ -71,7 +59,7 @@ test('ApiClient#parties returns HTTP failed response as an error ', async t => {
   const statusCode = 500;
   const response = 'Oops';
 
-  stubApiCall(statusCode, response);
+  stubApiCall(response, statusCode);
 
   await client.parties()
     .then(() => t.fail('Api client call did not fail'))
@@ -86,7 +74,8 @@ test('ApiClient#parties returns HTTP failed response as an error ', async t => {
 test('ApiClient#parties returns errors from the HTTP call', async t => {
   const error = new Error('Oops');
 
-  getApiStub().replyWithError(error);
+  helpers.getApiStub('parties')
+    .replyWithError(error);
 
   await client.parties()
     .then(() => t.fail('Api client call did not fail'))
