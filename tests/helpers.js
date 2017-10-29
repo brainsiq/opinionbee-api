@@ -2,9 +2,11 @@ const nock = require('nock');
 
 const apiKey = 'foo';
 const getApiStub = endpoint => nock('http://opinionbee.uk').get(`/json/v1.0/${endpoint}`);
-const stubApiCall = (endpoint, data = null, status = 200) => {
+const stubApiCall = (endpoint, data = null, status = 200, query = true) => {
+  const queryString = Object.assign({ key: apiKey }, query);
+
   return getApiStub(endpoint)
-    .query({ key: apiKey })
+    .query(queryString)
     .reply(status, data);
 };
 

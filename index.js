@@ -10,6 +10,7 @@ class ApiClient {
     this.companies = callEndpoint.bind(null, options, 'companies');
     this.parties = callEndpoint.bind(null, options, 'parties');
     this.types = callEndpoint.bind(null, options, 'types');
+    this.polls = require('./lib/polls').bind(null, options);
   }
 }
 

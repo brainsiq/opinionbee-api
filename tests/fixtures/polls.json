@@ -1,0 +1,156 @@
+[
+  {
+    "id": 3659,
+    "date": "2017-10-23",
+    "start_date": "2017-10-20",
+    "company": {
+      "name": "ICM",
+      "code": "ICM"
+    },
+    "client": "Guardian",
+    "type": {
+      "name": "Westminster Voting Intention",
+      "code": "WESTVI"
+    },
+    "headline": {
+      "CON": {
+        "pct": 42,
+        "party": {
+          "name": "Conservative",
+          "colour": "0087DC",
+          "code": "CON",
+          "textcolor": "f3f3f3"
+        },
+        "candidate": null,
+        "code": "CON",
+        "change": "+1"
+      },
+      "GRN": {
+        "pct": 2,
+        "party": {
+          "name": "Green Party",
+          "colour": "6AB023",
+          "code": "GRN",
+          "textcolor": "f3f3f3"
+        },
+        "candidate": null,
+        "code": "GRN",
+        "change": "="
+      },
+      "LAB": {
+        "pct": 42,
+        "party": {
+          "name": "Labour",
+          "colour": "DC241F",
+          "code": "LAB",
+          "textcolor": "f3f3f3"
+        },
+        "candidate": null,
+        "code": "LAB",
+        "change": "+1"
+      },
+      "LD": {
+        "pct": 7,
+        "party": {
+          "name": "Liberal Democrats",
+          "colour": "FDBB30",
+          "code": "LD",
+          "textcolor": "191919"
+        },
+        "candidate": null,
+        "code": "LD",
+        "change": "="
+      },
+      "UKIP": {
+        "pct": 3,
+        "party": {
+          "name": "UK Independence Party",
+          "colour": "70147A",
+          "code": "UKIP",
+          "textcolor": "f3f3f3"
+        },
+        "candidate": null,
+        "code": "UKIP",
+        "change": "-1"
+      }
+    },
+    "tables_url": ""
+  },
+  {
+    "id": 3658,
+    "date": "2017-10-19",
+    "start_date": "2017-10-18",
+    "company": {
+      "name": "YouGov",
+      "code": "YG"
+    },
+    "client": "Times",
+    "type": {
+      "name": "Westminster Voting Intention",
+      "code": "WESTVI"
+    },
+    "headline": {
+      "CON": {
+        "pct": 40,
+        "party": {
+          "name": "Conservative",
+          "colour": "0087DC",
+          "code": "CON",
+          "textcolor": "f3f3f3"
+        },
+        "candidate": null,
+        "code": "CON",
+        "change": "+1"
+      },
+      "GRN": {
+        "pct": 2,
+        "party": {
+          "name": "Green Party",
+          "colour": "6AB023",
+          "code": "GRN",
+          "textcolor": "f3f3f3"
+        },
+        "candidate": null,
+        "code": "GRN",
+        "change": "="
+      },
+      "LAB": {
+        "pct": 42,
+        "party": {
+          "name": "Labour",
+          "colour": "DC241F",
+          "code": "LAB",
+          "textcolor": "f3f3f3"
+        },
+        "candidate": null,
+        "code": "LAB",
+        "change": "="
+      },
+      "LD": {
+        "pct": 8,
+        "party": {
+          "name": "Liberal Democrats",
+          "colour": "FDBB30",
+          "code": "LD",
+          "textcolor": "191919"
+        },
+        "candidate": null,
+        "code": "LD",
+        "change": "="
+      },
+      "UKIP": {
+        "pct": 4,
+        "party": {
+          "name": "UK Independence Party",
+          "colour": "70147A",
+          "code": "UKIP",
+          "textcolor": "f3f3f3"
+        },
+        "candidate": null,
+        "code": "UKIP",
+        "change": "="
+      }
+    },
+    "tables_url": "http://d25d2506sfb94s.cloudfront.net/cumulus_uploads/document/mg654q435f/TimesResults_171019_VI_Trackers.pdf"
+  }
+]
