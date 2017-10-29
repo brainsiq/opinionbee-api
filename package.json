@@ -4,7 +4,8 @@
   "description": "A client library for the opinionbee.uk API",
   "main": "index.js",
   "scripts": {
-    "test": "ava 'tests/**/*.test.js' && semistandard"
+    "test": "ava 'tests/**/*.test.js' && semistandard",
+    "watch:test": "ava --watch 'tests/**/*.test.js'"
   },
   "repository": {
     "type": "git",
