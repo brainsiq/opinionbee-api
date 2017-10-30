@@ -1,7 +1,8 @@
 <a name="ApiClient"></a>
 
 ## ApiClient
-All functions return a Promise which either resolves with an array of data objects matching those returned when calling the API directly, or rejects with an Error with properties `httpStatusCode` and `httpResponseBody` if the Error represents a failed API call.
+All functions return a Promise which resolves with an array of data objects matching those returned when calling the API directly, or
+  reject with an Error with properties `httpStatusCode` and `httpResponseBody` if they represent failed API calls.
 
 **Kind**: global class  
 
@@ -52,10 +53,11 @@ Get polls from the Opinionbee API
 **Kind**: instance property of [<code>ApiClient</code>](#ApiClient)  
 **Returns**: <code>Promise.&lt;Array.&lt;object&gt;&gt;</code> - Array of companies  
 
-| Param | Description |
-| --- | --- |
-| [filters] | object Filters to apply to the API call |
-| [filters.startDate] | Date Return only polls from a date (ISO date format without a time) |
-| [filters.endDate] | Date Return only polls older than a date (ISO date format without a time). Can be combined with startDate to get polls between two dates |
-| [filters.company] | string Return only polls published by a specific company |
-| [filters.limit] | number Return a limited number of polls (0 < limit < 500) |
+| Param | Type | Description |
+| --- | --- | --- |
+| [filters] | <code>object</code> | Optional filters to apply to the API call |
+| [filters.startDate] | <code>Date</code> | Return only polls from a date (ISO date format without a time) |
+| [filters.endDate] | <code>Date</code> | Return only polls older than a date (ISO date format without a time). Can be combined with startDate to get polls between two dates |
+| [filters.company] | <code>string</code> | Return only polls published by a specific company |
+| [filters.limit] | <code>number</code> | Return a limited number of polls (0 < limit < 500) |
+

@@ -46,11 +46,11 @@ class ApiClient {
 
     /**
       @description Get polls from the Opinionbee API
-      @param [filters] object Filters to apply to the API call
-      @param [filters.startDate] Date Return only polls from a date (ISO date format without a time)
-      @param [filters.endDate] Date Return only polls older than a date (ISO date format without a time). Can be combined with startDate to get polls between two dates
-      @param [filters.company] string Return only polls published by a specific company
-      @param [filters.limit] number Return a limited number of polls (0 < limit < 500)
+      @param {object} [filters] Optional filters to apply to the API call
+      @param {Date} [filters.startDate] Return only polls from a date (ISO date format without a time)
+      @param {Date} [filters.endDate] Return only polls older than a date (ISO date format without a time). Can be combined with startDate to get polls between two dates
+      @param {string} [filters.company] Return only polls published by a specific company
+      @param {number} [filters.limit] Return a limited number of polls (0 < limit < 500)
       @returns {Promise<object[]>} Array of companies
     */
     this.polls = require('./lib/polls').bind(null, endpointOptions);
