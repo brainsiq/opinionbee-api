@@ -1,4 +1,5 @@
 const callEndpoint = require('./lib/callEndpoint');
+const polls = require('./lib/polls');
 const baseUri = 'http://opinionbee.uk/json/v1.0';
 
 /**
@@ -21,39 +22,47 @@ class ApiClient {
       throw new Error('options.apiKey must be a string (length >= 1)');
     }
 
-    const endpointOptions = {
+    this.endpointOptions = {
       baseUri,
       apiKey: options.apiKey
     };
+  }
 
-    /**
-      @description Get companies from the Opinionbee API
-      @returns {Promise<object[]>} Array of companies
-    */
-    this.companies = callEndpoint.bind(null, endpointOptions, 'companies');
+  /**
+    @description Get companies from the Opinionbee API
+    @returns {Promise<object[]>} Array of companies
+  */
+  companies () {
+    return callEndpoint(this.endpointOptions, 'companies');
+  }
 
-    /**
-      @description Get parties from the Opinionbee API
-      @returns {Promise<object[]>} Array of parties
-    */
-    this.parties = callEndpoint.bind(null, endpointOptions, 'parties');
+  /**
+    @description Get parties from the Opinionbee API
+    @returns {Promise<object[]>} Array of parties
+  */
+  parties () {
+    return callEndpoint(this.endpointOptions, 'parties');
+  }
 
-    /**
-      @description Get types from the Opinionbee API
-      @returns {Promise<object[]>} Array of types
-    */
-    this.types = callEndpoint.bind(null, endpointOptions, 'types');
+  /**
+    @description Get types from the Opinionbee API
+    @returns {Promise<object[]>} Array of types
+  */
+  types () {
+    return callEndpoint(this.endpointOptions, 'types');
+  }
 
-    /**
-      @description Get polls from the Opinionbee API
-      @param {object} [filters] Optional filters to apply to the API call
-      @param {Date} [filters.startDate] Return only polls from a date (ISO date format without a time)
-      @param {Date} [filters.endDate] Return only polls older than a date (ISO date format without a time). Can be combined with startDate to get polls between two dates
-      @param {string} [filters.company] Return only polls published by a specific company
-      @param {number} [filters.limit] Return a limited number of polls (0 < limit < 500)
-      @returns {Promise<object[]>} Array of companies
-    */
-    this.polls = require('./lib/polls').bind(null, endpointOptions);
+  /**
+    @description Get polls from the Opinionbee API
+    @param {object} [filters] Optional filters to apply to the API call
+    @param {Date} [filters.startDate] Return only polls from a date (ISO date format without a time)
+    @param {Date} [filters.endDate] Return only polls older than a date (ISO date format without a time). Can be combined with startDate to get polls between two dates
+    @param {string} [filters.company] Return only polls published by a specific company
+    @param {number} [filters.limit] Return a limited number of polls (0 < limit < 500)
+    @returns {Promise<object[]>} Array of companies
+  */
+  polls (filters) {
+    return polls(this.endpointOptions, filters);
   }
 }
 
