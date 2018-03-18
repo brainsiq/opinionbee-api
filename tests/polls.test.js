@@ -57,7 +57,7 @@ test('ApiClient#polls ignores the time part of startDate and endDate', async t =
     });
 });
 
-test('ApiClient#omits missing filters from the request', async t => {
+test('ApiClient#polls omits missing filters from the request', async t => {
   const company = 'YG';
   const limit = 15;
   const { apiKey, getApiStub } = helpers;
@@ -67,6 +67,22 @@ test('ApiClient#omits missing filters from the request', async t => {
     .reply(200, pollsFixture);
 
   await client.polls({ company, limit })
+    .then((data) => {
+      t.true(apiStub.isDone(), 'Opinionbee API was called');
+    });
+});
+
+test('ApiClient#polls optionally filters by poll type', async t => {
+  const company = 'YG';
+  const limit = 15;
+  const pollType = 'WESTVI';
+  const { apiKey, getApiStub } = helpers;
+
+  const apiStub = getApiStub('polls')
+    .query({ key: apiKey, code: pollType, limit, company })
+    .reply(200, pollsFixture);
+
+  await client.polls({ company, limit, pollType })
     .then((data) => {
       t.true(apiStub.isDone(), 'Opinionbee API was called');
     });
@@ -123,6 +139,15 @@ test('ApiClient#polls rejects calls with a limit below 1', async t => {
     .catch(err => {
       t.truthy(err instanceof Error, 'Is an error object');
       t.regex(err.message, /"limit" must be larger than or equal to 1/);
+    });
+});
+
+test('ApiClient#polls rejects calls with an invalid pollType', async t => {
+  await client.polls({ pollType: true })
+    .then((data) => t.fail('Call failed'))
+    .catch(err => {
+      t.truthy(err instanceof Error, 'Is an error object');
+      t.regex(err.message, /"pollType" must be a string/);
     });
 });
 
