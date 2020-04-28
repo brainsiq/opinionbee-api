@@ -21,6 +21,8 @@ class ApiClient {
     if (!(typeof options.apiKey === 'string' && options.apiKey.length > 0)) {
       throw new Error('options.apiKey must be a string (length >= 1)');
     }
+    
+    console.log('Hello!');
 
     this.endpointOptions = {
       baseUri,
